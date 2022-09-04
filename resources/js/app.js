@@ -27,9 +27,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from "./views/App.vue";
+import App from "./views/App";
 
 const app = new Vue({
     el: '#root',
-    render: h =>h (App)
+    render: h => h(App)
 });

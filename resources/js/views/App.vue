@@ -1,3 +1,5 @@
 <template>
-    <h1>Vuejs</h1>
+    <div>
+        <h1>Vuejs Ciao</h1>
+    </div>
 </template>

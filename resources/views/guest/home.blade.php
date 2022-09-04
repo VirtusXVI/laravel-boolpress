@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="root">
-        <h1>Vuejs</h1>
+        
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

@@ -1972,10 +1972,15 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("Vuejs")]);
+  return _vm._m(0);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_c("h1", [_vm._v("Vuejs Ciao")])]);
+}];
 render._withStripped = true;
 
 
@@ -49544,7 +49549,7 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
+/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49572,9 +49577,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 
 var app = new Vue({
-  el: '#app',
+  el: '#root',
   render: function render(h) {
-    return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    return h(_views_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
 });
 
