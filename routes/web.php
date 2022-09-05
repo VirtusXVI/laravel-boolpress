@@ -21,11 +21,9 @@ Route::middleware('auth')
 ->name('admin.')
 ->prefix('admin')
 ->group(function(){
-    Route::get('/','HomeController@index')
-    ->name('home');
+    Route::get('/','HomeController@index')->name('home');
+    Route::resource('posts', 'PostsController');
 });
-
-Route::resource('posts', 'Admin\PostsController');
 
 Route::get('{any?}', function () {
     return view('guest.home');
