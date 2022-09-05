@@ -25,6 +25,8 @@ Route::middleware('auth')
     ->name('home');
 });
 
+Route::resource('posts', 'Admin\PostsController');
+
 Route::get('{any?}', function () {
     return view('guest.home');
 });
