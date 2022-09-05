@@ -43,7 +43,9 @@ class PostsController extends Controller
         $form_data = $request->all();
         $new_post = new Post();
         $new_post->fill($form_data);
-        $new_post->slug = Str::slug($new_post->title, '-');
+
+        $new_post->slug = $this->slugControls($new_post->title);
+
         $new_post->save();
 
         return redirect()->route('admin.posts.show', $new_post->id);
@@ -94,5 +96,20 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function slugControls($title){
+        $slug_to_save = Str::slug($title, '-');
+        $slug_base = $slug_to_save;
+        $existing_slug_post = Post::where('slug','=', $slug_to_save)->first();
+        $i = 1;
+        while($existing_slug_post){
+            $slug_to_save = $slug_base . '-' . $i;
+
+            $existing_slug_post = Post::where('slug', '=', $slug_to_save)->first();
+
+            $i++;
+        }
+        return $slug_to_save;
     }
 }
