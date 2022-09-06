@@ -104,7 +104,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 
     protected function slugControls($title){
