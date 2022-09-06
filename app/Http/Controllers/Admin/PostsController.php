@@ -72,7 +72,12 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post_to_edit = Post::findOrFail($id);
+
+        $data = [
+            'post' => $post_to_edit
+        ];
+        return view('admin.posts.edit', $data);
     }
 
     /**
@@ -84,7 +89,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form_data = $request->all();
+        $post_to_update = Post::find($id);
+        $post_to_update->update($form_data);
+
+        return view('admin.posts.show', ['posts' => $post_to_update]);
     }
 
     /**
