@@ -38,7 +38,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate($this->getValidationRules());
+        $request->validate($this->getValidationRules());
 
         $form_data = $request->all();
         $new_post = new Post();
@@ -89,6 +89,9 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate($this->getValidationRules());
+
         $form_data = $request->all();
         $post_to_update = Post::find($id);
         $post_to_update->update($form_data);
@@ -122,5 +125,14 @@ class PostsController extends Controller
             $i++;
         }
         return $slug_to_save;
+    }
+
+    protected function getValidationRules(){
+
+        return [
+            'title' => 'required|unique:posts|max:255',
+            'description' => 'required',
+        ];
+    
     }
 }
