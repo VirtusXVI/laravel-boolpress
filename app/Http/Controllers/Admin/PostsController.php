@@ -133,6 +133,5 @@ class PostsController extends Controller
             'title' => 'required|unique:posts|max:255',
             'description' => 'required',
         ];
-    
     }
 }

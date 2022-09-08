@@ -11,4 +11,8 @@ class Post extends Model
         'description',
         'token'
     ];
+
+    public function postInfo(){
+        return $this->hasOne('App\PostInfo');
+    }
 }
