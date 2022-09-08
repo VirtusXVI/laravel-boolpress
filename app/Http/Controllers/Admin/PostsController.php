@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Post;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -27,7 +28,11 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        $data = [
+            'categories' => $categories
+        ];
+        return view('admin.posts.create',$data);
     }
 
     /**
@@ -39,7 +44,6 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->getValidationRules());
-
         $form_data = $request->all();
         $new_post = new Post();
         $new_post->fill($form_data);
@@ -73,9 +77,11 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post_to_edit = Post::findOrFail($id);
+        $categories = Category::all();
 
         $data = [
-            'post' => $post_to_edit
+            'post' => $post_to_edit,
+            'categories' => $categories
         ];
         return view('admin.posts.edit', $data);
     }

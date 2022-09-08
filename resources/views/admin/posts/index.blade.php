@@ -4,6 +4,7 @@
     @foreach ($posts as $post)
         <div>
             <h1>{{ $post->title }}</h1>
+            <div>{{ $post->category_id !== null ? 'Categoria: ' . $post->category_id : ''}}</div>
             <p>{{ $post->description }}</p>
             <a href="{{ route('admin.posts.show', $post->id) }}">Scopri Di Più</a>
             <br>
