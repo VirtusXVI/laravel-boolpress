@@ -16,4 +16,7 @@ class Post extends Model
     public function postInfo(){
         return $this->hasOne('App\PostInfo');
     }
+    public function category() {
+        return $this->belongsTo('App\Category');
+    }
 }
