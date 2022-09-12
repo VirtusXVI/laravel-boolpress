@@ -47,7 +47,7 @@
                 {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
                 >
                 <label class="form-check-label" for="tag-{{ $tag->id }}">
-                    {{ $tag->name }}
+                    {{ $tag->tags }}
                 </label>
             </div>
         @endforeach

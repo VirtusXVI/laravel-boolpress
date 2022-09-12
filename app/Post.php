@@ -9,8 +9,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'description',
-        'tags',
-        'token',
+        // 'tags',
+        // 'token',
         'category_id'
     ];
 

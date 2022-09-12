@@ -69,7 +69,6 @@ class PostsController extends Controller
     public function show($id)
     {
         $posts = Post::find($id);
-        dd($posts);
         return view('admin.posts.show',compact('posts',$posts));
     }
 
@@ -84,7 +83,6 @@ class PostsController extends Controller
         $post_to_edit = Post::findOrFail($id);
         $categories = Category::all();
         $tags = Tag::all();
-
         $data = [
             'post' => $post_to_edit,
             'categories' => $categories,
@@ -109,7 +107,8 @@ class PostsController extends Controller
         $post_to_update = Post::find($id);
         
         $post_to_update->update($form_data);
-        
+        // dd($form_data['tags']);
+
         if(isset($form_data['tags'])) {
             $post_to_update->tags()->sync($form_data['tags']);
         } else {
