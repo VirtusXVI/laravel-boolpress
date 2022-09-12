@@ -13,12 +13,12 @@ class CreateTagPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_post', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id')->references('id')->on('post');
-
-            $table->unsignedBigInteger('tag_id');
-            $table->foreign('tag_id')->references('id')->on('tag');
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
+            
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('tag_id')->references('id')->on('tags');
         });
     }
 

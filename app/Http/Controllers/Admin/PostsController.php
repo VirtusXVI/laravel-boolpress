@@ -30,10 +30,10 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $categories = Tag::all();
+        $tags = Tag::all();
         $data = [
             'categories' => $categories,
-            'tag' => $tags
+            'tags' => $tags
         ];
         return view('admin.posts.create',$data);
     }
@@ -50,10 +50,12 @@ class PostsController extends Controller
         $form_data = $request->all();
         $new_post = new Post();
         $new_post->fill($form_data);
-
         $new_post->slug = $this->slugControls($new_post->title);
-
         $new_post->save();
+
+        if(isset($form_data['tags'])) {
+            $new_post->tags()->sync($form_data['tags']);
+        }
 
         return redirect()->route('admin.posts.show', $new_post->id);
     }
@@ -67,7 +69,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $posts = Post::find($id);
-
+        dd($posts);
         return view('admin.posts.show',compact('posts',$posts));
     }
 
@@ -105,7 +107,14 @@ class PostsController extends Controller
 
         $form_data = $request->all();
         $post_to_update = Post::find($id);
+        
         $post_to_update->update($form_data);
+        
+        if(isset($form_data['tags'])) {
+            $post_to_update->tags()->sync($form_data['tags']);
+        } else {
+            $post_to_update->tags()->sync([]);
+        }
 
         return view('admin.posts.show', ['posts' => $post_to_update]);
     }

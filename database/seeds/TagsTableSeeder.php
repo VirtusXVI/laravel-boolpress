@@ -23,7 +23,7 @@ class TagsTableSeeder extends Seeder
 
         foreach ($tags as $tag_name) {
             $new_tag = new Tag();
-            $new_tag->name = $tag_name;
+            $new_tag->tags = $tag_name;
             $new_tag->slug = Str::slug($tag_name, '-');
             $new_tag->save();
         }
