@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -29,8 +30,10 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $categories = Tag::all();
         $data = [
-            'categories' => $categories
+            'categories' => $categories,
+            'tag' => $tags
         ];
         return view('admin.posts.create',$data);
     }
@@ -78,10 +81,12 @@ class PostsController extends Controller
     {
         $post_to_edit = Post::findOrFail($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
             'post' => $post_to_edit,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
         return view('admin.posts.edit', $data);
     }
