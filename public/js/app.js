@@ -2037,7 +2037,15 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("Posts")], 1);
+  return _c("div", [_c("p", [_c("router-link", {
+    attrs: {
+      to: "/foo"
+    }
+  }, [_vm._v("Go to Foo")]), _vm._v(" "), _c("router-link", {
+    attrs: {
+      to: "/bar"
+    }
+  }, [_vm._v("Go to Bar")])], 1), _vm._v(" "), _c("Posts")], 1);
 };
 
 var staticRenderFns = [];
