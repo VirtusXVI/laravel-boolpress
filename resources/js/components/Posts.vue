@@ -17,7 +17,8 @@
                 <li class="page-item"  
                 :class="paginationData.current_page == 1 ? 'disabled' : ''"><a class="page-link" @click="apiCall(paginationData.current_page - 1)">Previous</a></li>
                 <li class="page-item"  
-                :class="paginationData.current_page == 3 ? 'disabled' : ''"><a class="page-link" @click="apiCall(paginationData.current_page + 1)">Next</a></li>
+                :class="paginationData.current_page == paginationData.last_page ? 'disabled' : ''"><a class="page-link" 
+                @click="apiCall(paginationData.current_page + 1)">Next</a></li>
             </ul>
         </nav>
     </div>
