@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="container">
-        <h2>Posts</h2>
+    <div>
         <div class="row row-cols-3">
             <div class="col" v-for="post,index in posts" :key="index">
                 <div class="card mb-3">

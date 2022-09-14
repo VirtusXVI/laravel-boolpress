@@ -1,19 +1,25 @@
 <template>
   <div>
-    <p>
-        <router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/bar">Go to Bar</router-link>
-    </p>
-    <Posts/>
+    <Header/>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
+
 </template>
 
 <script>
-import Posts from '../components/Posts.vue';
+import Home from '../components/Home.vue';
+import Blog from '../components/Blog.vue';
+import About from '../components/About.vue';
+import Header from '../components/parts/Header.vue';
 
 export default {
     components:{
-        Posts,
+        Home,
+        About,
+        Header,
+        Blog
     }
 }
 </script>
