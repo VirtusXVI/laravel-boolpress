@@ -12,6 +12,7 @@
 import Home from '../components/Home.vue';
 import Blog from '../components/Blog.vue';
 import About from '../components/About.vue';
+import SinglePost from '../components/SinglePost.vue';
 import Header from '../components/parts/Header.vue';
 
 export default {
@@ -19,7 +20,8 @@ export default {
         Home,
         About,
         Header,
-        Blog
+        Blog,
+        SinglePost
     }
 }
 </script>
