@@ -7,6 +7,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text">{{ textSlicer(post.description) }}</p>
+                        <a :href="'/blog/' + post.slug">Scopri Di Più</a>
                     </div>
                 </div>
             </div>
@@ -41,6 +42,7 @@ export default {
             .then((response) =>{
             this.posts = response.data.results.data;
             this.paginationData = response.data.results;
+            console.log(this.posts);
             })
         },
         textSlicer(text){

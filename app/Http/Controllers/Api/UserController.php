@@ -19,7 +19,7 @@ class UserController extends Controller
         return response()->json($data);
     }
     public function show($slug){
-        $post = Post::where('slug', '=', $slug)->first();
+        $post = Post::where('slug', '=', $slug)->with(['tags', 'category'])->first();
 
         if($post){
             $data = [

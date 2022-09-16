@@ -1972,7 +1972,23 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SinglePost'
+  name: 'SinglePost',
+  data: function data() {
+    return {
+      singlePost: null,
+      tags: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('http://127.0.0.1:8000/api/posts/' + this.$route.params.slug).then(function (response) {
+      _this.singlePost = response.data.results;
+      _this.tags = _this.singlePost.tags;
+      console.log(_this.singlePost);
+      console.log(_this.tags);
+    }); // console.log(this.$route.params.slug);
+  }
 });
 
 /***/ }),
@@ -2016,6 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('http://127.0.0.1:8000/api/posts?page=' + pageNumber).then(function (response) {
         _this.posts = response.data.results.data;
         _this.paginationData = response.data.results;
+        console.log(_this.posts);
       });
     },
     textSlicer: function textSlicer(text) {
@@ -2204,15 +2221,29 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", [_vm.singlePost ? _c("div", {
+    staticClass: "card mb-3"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v(_vm._s(_vm.singlePost.title))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.singlePost.description))]), _vm._v(" "), _vm.singlePost.category ? _c("div", [_c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.singlePost.category.name))])]) : _vm._e(), _vm._v(" "), _vm.tags ? _c("div", _vm._l(_vm.tags, function (tag, index) {
+    return _c("p", {
+      key: index,
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(tag.tags))]);
+  }), 0) : _vm._e(), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/blog"
+    }
+  }, [_vm._v("Torna a Blog")])])]) : _vm._e()]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("h1", [_vm._v("SinglePost")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2331,7 +2362,11 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v(_vm._s(_vm.textSlicer(post.description)))])])])]);
+    }, [_vm._v(_vm._s(_vm.textSlicer(post.description)))]), _vm._v(" "), _c("a", {
+      attrs: {
+        href: "/blog/" + post.slug
+      }
+    }, [_vm._v("Scopri Di Più")])])])]);
   }), 0), _vm._v(" "), _c("nav", [_c("ul", {
     staticClass: "pagination"
   }, [_c("li", {
