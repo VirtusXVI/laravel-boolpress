@@ -21,10 +21,16 @@ class UserController extends Controller
     public function show($slug){
         $post = Post::where('slug', '=', $slug)->first();
 
-        $data = [
-            'success' => true,
-            'results' => $post
-        ];
+        if($post){
+            $data = [
+                'success' => true,
+                'results' => $post
+            ];
+        }else{
+            $data = [
+                'success' => false
+            ];
+        }
 
         return response()->json($data);
     }
