@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <img src="{{ asset('storage/' . $posts->cover) }}" alt="">
     <h1>{{ $posts->title }}</h1>
     <div>Creato: {{ $posts->created_at }}</div>
     <div>Modificato: {{ $posts->updated_at }}</div>

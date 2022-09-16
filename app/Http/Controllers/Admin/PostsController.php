@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -49,9 +50,15 @@ class PostsController extends Controller
         $request->validate($this->getValidationRules());
         $form_data = $request->all();
         $new_post = new Post();
+        if(isset($form_data['image'])) {
+            $img_path = Storage::put('post-covers', $form_data['image']);
+            $form_data['cover'] = $img_path;
+        }
         $new_post->fill($form_data);
         $new_post->slug = $this->slugControls($new_post->title);
+        
         $new_post->save();
+
 
         if(isset($form_data['tags'])) {
             $new_post->tags()->sync($form_data['tags']);
